@@ -6,8 +6,6 @@ name: Node CI
 on: [push]
 
 jobs:
-      - uses: actions/upload-artifact@master
-    needs: build
           name: webpack artifacts
           path: public/
 
@@ -35,6 +33,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: actions/upload-artifact@master
+      needs: build
     - name: npm install, and test
       run: |
         npm install
